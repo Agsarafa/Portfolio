@@ -4,6 +4,7 @@ import SearchBox from '../Components/SearchBox';
 //import {robots} from '../Components/Robots' // no longer need this since we are using an API
 import '../Containers/App';
 import Scroll from '../Components/Scroll';
+import ErrorBoundry from '../Components/ErrorBoundry';
 
 
 class App extends Component {
@@ -32,7 +33,7 @@ class App extends Component {
             return robots.name.toLowerCase().includes(searchfield.toLowerCase());
         }); //Now filtered robots can be passed to the cardlist
             return !robots.length ?  // Checking timeing and automatically if it is zero (true) return false. Using conditional
-            <h1>Getting your friends!</h1> :
+            <h1 className="tc f1">Getting your friends!</h1> :
             (
                 <div className='tc'>
                     <style>
@@ -41,7 +42,9 @@ class App extends Component {
                     <h1 className="f1"> RoboFriends </h1>
                     <SearchBox searchChange={this.onSearchChange}/>
                     <Scroll>
+                        <ErrorBoundry> 
                         <CardList robots={filteredRobots}/> 
+                        </ErrorBoundry>
                     </Scroll>
                 </div>
             );
@@ -59,3 +62,5 @@ export default App;
 //Event.target.value just gives the value for the event that is happening 
 // Cardlist is being passed with the state and searchBox is being given the object of onSearchChange function to be passed.
 //if you make your own thing make sure to make it a function
+
+//Wrapped ErrorBoundry to the Cardlist since it is going to catch anything that false in the child.

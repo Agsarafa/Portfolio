@@ -7,12 +7,14 @@ import reportWebVitals from './reportWebVitals';
 import 'tachyons'; //imported for CSS classes.
 import './Containers/App.css'
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-)
+//const root = ReactDOM.createRoot(document.getElementById('root'));
+//root.render(
+//  <React.StrictMode>
+//    <App />
+//  </React.StrictMode> }
+//Above was placed with the below since React was updated to 18.
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
 
 
 //we can pass Hello a property to send out to the HTML the {hello + React ninj thing}
